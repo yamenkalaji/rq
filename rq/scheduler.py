@@ -56,6 +56,7 @@ class RQScheduler(object):
     @property
     def connection(self):
         if not self._connection:
+            self._connection_kwargs.pop('parser_class', None)
             self._connection = Redis(**self._connection_kwargs)
         return self._connection
 
