@@ -55,10 +55,9 @@ class RQScheduler(object):
 
     @property
     def connection(self):
-        if self._connection:
-            return self._connection
-        self._connection = Redis(**self._connection_kwargs)
-        return Redis(**self._connection_kwargs)
+        if not self._connection:
+            self._connection = Redis(**self._connection_kwargs)
+        return self._connection
 
     @property
     def acquired_locks(self):
